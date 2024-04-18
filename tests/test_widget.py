@@ -1,4 +1,5 @@
 import pytest
+
 from src.widget import get_mask_result, time_conversion
 
 
@@ -25,7 +26,9 @@ def test_get_mask_result(x: str, expected: str) -> None:
     [
         ("2018-07-11T02:26:18.671407", "11.07.2018"),
         ("2019-07-03T18:35:29.512364", "03.07.2019"),
-        ("2018-09-12T21:27:25.241689", "12.09.2018"),])
+        ("2018-09-12T21:27:25.241689", "12.09.2018"),
+    ],
+)
 def test_time_conversion(y: str, expected: str) -> None:
     """Функции, возвращающая маску счета"""
     assert time_conversion(y) == expected
