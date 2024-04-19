@@ -14,3 +14,6 @@ def time_conversion(data_time: str) -> str:
     main_parts = data_time.split("-")[::-1]
     main_parts[0] = main_parts[0][:2]
     return ".".join(main_parts)
+
+
+print(get_mask_result("Счет 64686473678894779589"))

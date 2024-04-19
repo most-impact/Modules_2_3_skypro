@@ -1,7 +1,7 @@
 from typing import Iterator, Union
 
 
-def filter_by_currency(transactions: list[dict[str, Union[int, str, dict[str, dict[str, str]]]]], currency: str)\
+def filter_by_currency(transactions: list[dict], currency: str)\
         -> Iterator[dict[str, Union[int, str, dict[str, dict[str, str]]]]]:
     """Возвращает итераторы по очереди операции, в которых указана заданная валюта"""
     for item in transactions:
@@ -9,7 +9,7 @@ def filter_by_currency(transactions: list[dict[str, Union[int, str, dict[str, di
             yield item
 
 
-def transaction_descriptions(transactions: list[dict[str, Union[int, str, dict[str, dict[str, str]]]]]) -> Iterator[str]:
+def transaction_descriptions(transactions: list[dict]) -> Iterator[str]:
     """Возвращает итератор по описаниям транзакций"""
     for item in transactions:
         yield item["description"]
