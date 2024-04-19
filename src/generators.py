@@ -1,8 +1,9 @@
 from typing import Iterator, Union
 
 
-def filter_by_currency(transactions: list[dict], currency: str)\
-        -> Iterator[dict[str, Union[int, str, dict[str, dict[str, str]]]]]:
+def filter_by_currency(
+    transactions: list[dict], currency: str
+) -> Iterator[dict[str, Union[int, str, dict[str, dict[str, str]]]]]:
     """Возвращает итераторы по очереди операции, в которых указана заданная валюта"""
     for item in transactions:
         if item["operationAmount"]["currency"]["code"] == currency:
