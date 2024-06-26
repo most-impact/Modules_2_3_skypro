@@ -4,7 +4,7 @@ from unittest.mock import patch
 
 import pandas as pd
 
-from src.csv_xlsx import read_xlsx_file, read_csv_file
+from src.csv_xlsx import read_csv_file, read_xlsx_file
 
 
 def test_return_value_from_csv_file() -> None:
