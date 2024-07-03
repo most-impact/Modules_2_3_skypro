@@ -4,7 +4,7 @@ from typing import Any
 
 from src.csv_xlsx import read_csv_file, read_xlsx_file
 from src.generators import transaction_descriptions
-from src.library_re import get_dict_by_search_string
+from src.re_random import get_dict_by_search_string
 from src.processing import get_result_by_value, sort_lst_by_date
 from src.utils import get_data_by_path, sum_of_transaction
 from src.widget import get_mask_result, time_conversion

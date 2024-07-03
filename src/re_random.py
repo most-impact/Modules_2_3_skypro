@@ -1,4 +1,5 @@
 import re
+from collections import Counter
 
 
 def get_dict_by_search_string(transactions_list: list, search_string: str) -> list:
@@ -13,16 +14,13 @@ def get_dict_by_search_string(transactions_list: list, search_string: str) -> li
 
 def categorize_transactions(transactions_list: list, categories: dict) -> dict:
     """Подсчет операций в каждой категории"""
-    result = {}
+    category_counts_2: dict = Counter()
 
     for transaction in transactions_list:
         if "description" in transaction:
             for category, keywords in categories.items():
                 if any(keyword.lower() in transaction["description"].lower() for keyword in keywords):
-                    if category not in result:
-                        result[category] = 1
-                    else:
-                        result[category] += 1
+                    category_counts_2[category] += 1
                     break
 
-    return result
+    return dict(category_counts_2)
