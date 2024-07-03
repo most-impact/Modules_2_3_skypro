@@ -1,4 +1,5 @@
 import os
+from typing import Any
 
 import requests
 from dotenv import load_dotenv
@@ -11,10 +12,9 @@ API_KEY = os.getenv("API_KEY")
 logger = setup_logger()
 
 
-def get_current_exchange_rate(transaction: dict) -> float:
+def get_current_exchange_rate(currency: Any) -> float:
     # Получение актуального курса доллара и/или евро в рублях
     try:
-        currency = transaction["operationAmount"]["currency"]["code"]
         url = f"https://api.apilayer.com/exchangerates_data/latest?symbols=RUB&base={currency}"
         headers = {"apikey": API_KEY}
         response = requests.get(url, headers=headers).json()

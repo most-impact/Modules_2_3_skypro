@@ -31,10 +31,17 @@ def get_data_by_path(path: str) -> list[str] | dict:
 
 def sum_of_transaction(transaction: dict[str, Any]) -> float:
     # Получение суммы транзакции в рублях
-    rate = get_current_exchange_rate(transaction)
-    if rate:
-        logger.info("Функция sum_of_transaction выполнена успешно")
-        return rate * float(transaction["operationAmount"]["amount"])
+    total = 0.0
+    operation_sum = transaction.get("operationAmount", {})
+    currency_code = operation_sum.get("currency", {}).get("code", "")
+    amount = float(operation_sum.get("amount", 0.0))
+    if currency_code in ["USD", "EUR"]:
+        rate_to_rub = get_current_exchange_rate(currency_code)
+        total += amount * rate_to_rub
+    elif currency_code == "RUB":
+        total += amount
+        logger.info("Function sum_amount completed successfully")
+        return total
     else:
-        logger.error("С функцией sum_of_transaction что-то пошло не так")
-        return 1.0
+        logger.error("Something went wrong with the sum_amount function: %(error)s")
+    return total

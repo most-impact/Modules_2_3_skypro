@@ -1,13 +1,15 @@
+import csv
+
 import pandas as pd
 
 
 def read_csv_file(filename: str) -> list:
-    if filename.endswith(".csv"):
-        df = pd.read_csv(filename, encoding="utf-8")
-        transactions = df.to_dict(orient="records")
-        return transactions
-    else:
-        return []
+    data = []
+    with open(filename, encoding="utf-8") as file:
+        reader = csv.DictReader(file, delimiter=";")
+        for row in reader:
+            data.append(row)
+    return data
 
 
 def read_xlsx_file(filename: str) -> list:
